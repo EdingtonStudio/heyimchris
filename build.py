@@ -1,0 +1,142 @@
+#!/usr/bin/env python3
+"""Assembles the static HTML pages for heyimchris.com from shared header/footer + per-page main content."""
+import os
+
+ROOT = os.path.dirname(os.path.abspath(__file__))
+
+MONOGRAM_SVG = '''<svg viewBox="0 0 100 100" fill="none" aria-hidden="true">
+        <path d="M 76 26 A 38 38 0 1 0 76 74" stroke="currentColor" stroke-width="13" fill="none" stroke-linecap="square"/>
+        <rect x="56" y="17" width="34" height="13" fill="currentColor"/>
+        <rect x="56" y="43.5" width="26" height="13" fill="currentColor"/>
+        <rect x="56" y="70" width="34" height="13" fill="currentColor"/>
+      </svg>'''
+
+SUN_MOON_SVG = '''<svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>'''
+
+NAV_ITEMS = [
+    ("about.html", "About"),
+    ("ventures.html", "Ventures"),
+    ("government.html", "Government"),
+    ("notes.html", "Notes"),
+    ("contact.html", "Contact"),
+]
+
+
+def render_nav(active):
+    links = []
+    for href, label in NAV_ITEMS:
+        current = ' aria-current="page"' if href == active else ""
+        links.append(f'<a href="{href}"{current}>{label}</a>')
+    return "\n        ".join(links)
+
+
+def head(title, description, canonical, og_title=None, og_description=None):
+    og_title = og_title or title
+    og_description = og_description or description
+    return f'''<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content="{description}" />
+  <link rel="canonical" href="https://heyimchris.com/{canonical}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="{og_title}" />
+  <meta property="og:description" content="{og_description}" />
+  <meta property="og:url" content="https://heyimchris.com/{canonical}" />
+  <meta property="og:image" content="https://heyimchris.com/assets/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#0A0A0A" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="base.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+'''
+
+
+def header(active):
+    return f'''  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand-mark" href="index.html" aria-label="Chris Edington, home">
+        {MONOGRAM_SVG}
+        <span class="brand-mark-name">Chris<span> Edington</span></span>
+      </a>
+      <nav class="main-nav" data-main-nav aria-label="Primary">
+        {render_nav(active)}
+      </nav>
+      <div class="header-actions">
+        <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle dark mode" aria-pressed="false">
+          {SUN_MOON_SVG}
+        </button>
+        <button class="mobile-menu-btn" data-menu-toggle type="button" aria-label="Open menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+'''
+
+
+FOOTER = '''  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a class="brand-mark" href="index.html" aria-label="Chris Edington, home">
+            ''' + MONOGRAM_SVG + '''
+            <span class="brand-mark-name">Chris<span> Edington</span></span>
+          </a>
+          <p class="text-muted" style="margin-top: var(--space-4); max-width: 34ch;">Creative director and founder. Edington Studio, Quell, and Mr. Sniff&rsquo;s. Pittsburgh, PA.</p>
+          <div class="badge-row" style="margin-top: var(--space-5);">
+            <span class="badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6l-8-4Z"/></svg>
+              Veteran-owned
+            </span>
+          </div>
+        </div>
+        <div class="footer-cols">
+          <div class="footer-col">
+            <h4>Site</h4>
+            <a href="about.html">About</a>
+            <a href="ventures.html">Ventures</a>
+            <a href="government.html">Government</a>
+            <a href="notes.html">Notes</a>
+            <a href="contact.html">Contact</a>
+          </div>
+          <div class="footer-col">
+            <h4>Elsewhere</h4>
+            <a href="https://www.edington.co" target="_blank" rel="noopener">Edington Studio</a>
+            <a href="https://www.shopquell.co" target="_blank" rel="noopener">Quell</a>
+            <a href="https://www.linkedin.com/in/chris-edington/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://dribbble.com/ChrisEdington" target="_blank" rel="noopener">Dribbble</a>
+          </div>
+          <div class="footer-col">
+            <h4>Contact</h4>
+            <a href="mailto:chris@edington.co">chris@edington.co</a>
+            <a href="tel:+19199461693">919.946.1693</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span data-year>2026</span> Edington Studios LLC, DBA Edington Studio. All rights reserved.</p>
+        <p>Pittsburgh, PA &middot; VOSB &middot; SBA-certified small business &middot; PA Small Business + VBE</p>
+      </div>
+    </div>
+  </footer>
+  <script src="app.js" defer></script>
+</body>
+</html>
+'''
+
+
+def write_page(filename, active, title, description, main_html, og_title=None, og_description=None):
+    html = head(title, description, filename, og_title, og_description) + header(active) + main_html + FOOTER
+    with open(os.path.join(ROOT, filename), "w") as f:
+        f.write(html)
+    print("wrote", filename)
