@@ -1,14 +1,8 @@
 // app.js — theme toggle + mobile nav
 (function () {
   var root = document.documentElement;
-  var STORAGE_KEY = 'heyimchris-theme';
 
   function getPreferredTheme() {
-    var stored = null;
-    try {
-      stored = localStorage.getItem(STORAGE_KEY);
-    } catch (e) {}
-    if (stored === 'light' || stored === 'dark') return stored;
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   }
 
@@ -29,9 +23,6 @@
         var current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
         var next = current === 'dark' ? 'light' : 'dark';
         applyTheme(next);
-        try {
-          localStorage.setItem(STORAGE_KEY, next);
-        } catch (e) {}
       });
     });
 
