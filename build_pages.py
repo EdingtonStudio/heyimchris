@@ -1,67 +1,99 @@
 #!/usr/bin/env python3
 import build as b
 
-ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
+ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>'
+SHIELD = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6l-8-4Z"/></svg>'
 
 # ---------------------------------------------------------------- HOME
 INDEX_MAIN = f'''  <main id="main">
     <section class="hero">
       <div class="wrap">
-        <p class="eyebrow">Pittsburgh, PA &middot; Creative director &amp; founder</p>
-        <h1 class="display-hero hero-headline">Built.<br />Building.<br />Both.</h1>
+        <div class="hero-top">
+          <span>Hey, I&rsquo;m Chris</span>
+          <span class="status-chip"><span class="status-dot"></span>Based in Pittsburgh, PA</span>
+        </div>
+        <h1 class="display-hero hero-headline">Oh,<br />hey there.</h1>
         <div class="hero-foot">
-          <p class="lede">I&rsquo;ve spent 15 years building brands for other people. I&rsquo;ve also built two of my own: one I sold, one I&rsquo;m scaling right now. Edington Studio is the practice. Quell and Mr. Sniff&rsquo;s are the proof. If you want a creative director who knows what it costs to actually ship, that&rsquo;s what you get here.</p>
-          <div class="cta-row">
-            <a class="btn btn-primary" href="ventures.html">See what I&rsquo;ve built</a>
-            <a class="btn btn-secondary" href="https://www.edington.co" target="_blank" rel="noopener">Work with the studio</a>
-          </div>
+          <p class="lede">I&rsquo;ve spent 15 years building brands for other people. I&rsquo;ve also built brands of my own: one I sold, two I&rsquo;m running right now. Edington Studio is the practice. Quell, Mr. Sniff&rsquo;s, and Puddle Pirate are the proof.</p>
         </div>
       </div>
     </section>
 
-    <section class="stat-strip">
-      <div class="stat">
-        <div class="stat-value">15+</div>
-        <div class="stat-label">Years in brand &amp; design</div>
-      </div>
-      <div class="stat">
-        <div class="stat-value">$5M+</div>
-        <div class="stat-label">Raised for a brand I built</div>
-      </div>
-      <div class="stat">
-        <div class="stat-value">10K+</div>
-        <div class="stat-label">Units sold before I exited</div>
-      </div>
-      <div class="stat">
-        <div class="stat-value">2004&ndash;08</div>
-        <div class="stat-label">U.S. Coast Guard</div>
-      </div>
-    </section>
-
-    <section class="section">
+    <section class="section section--tight" style="border-top: 1px solid var(--color-border); padding-top: var(--space-8);">
       <div class="wrap">
-        <p class="eyebrow">Ventures</p>
-        <h2 class="display-xl" style="max-width: 16ch; margin-bottom: var(--space-4);">What I&rsquo;ve built</h2>
-        <p class="lede" style="margin-bottom: var(--space-12);">Edington Studio is the practice. Quell and Mr. Sniff&rsquo;s are what I&rsquo;ve built with it.</p>
-        <div class="venture-subgrid" style="grid-template-columns: repeat(3, 1fr);">
-          <div class="card">
-            <img src="assets/EdingtonStudioLogo.png" alt="Edington Studio" class="venture-logo" style="margin-bottom: var(--space-5);" width="220" height="80" loading="lazy" decoding="async" />
-            <p class="text-muted">The practice. Naming, identity, packaging, and web.</p>
-          </div>
-          <div class="card">
-            <img src="assets/QuellLogo-dark.svg" alt="Quell" class="venture-logo" style="margin-bottom: var(--space-5); height: 34px;" width="140" height="34" loading="lazy" decoding="async" />
-            <p class="text-muted">Art supplies for working artists and educators.</p>
-          </div>
-          <div class="card">
-            <img src="assets/mr-sniffs-wordmark-black.png" alt="Mr. Sniff&rsquo;s" class="venture-logo" style="margin-bottom: var(--space-5); height: 34px;" width="150" height="34" loading="lazy" decoding="async" />
-            <p class="text-muted">Incense, built from scratch, out of Pittsburgh.</p>
-          </div>
-        </div>
-        <a class="btn-text" href="ventures.html" style="margin-top: var(--space-10);">See the full picture {ARROW}</a>
+        <p class="eyebrow">What I run</p>
+        <h2 class="display-xl" style="max-width: 20ch;">The studio, and what it&rsquo;s built</h2>
       </div>
     </section>
 
-    <section class="section section--tight" style="border-top: 1px solid var(--color-divider);">
+    <section class="wrap">
+      <div class="work-stack">
+        <div class="work-card-wrap">
+        <a class="work-card" href="https://www.edington.co" target="_blank" rel="noopener" style="--card-bg:#ECE8DD; --card-ink:#2733D9;">
+          <div class="work-card-head">
+            <div class="work-card-top">
+              <span>Est. 2024</span>
+              <span>Creative studio</span>
+            </div>
+            <div class="work-card-main">
+              <div class="work-card-logo" style="height: clamp(38px, 4.8vw, 58px);"><img src="assets/EdingtonStudioLogo-blue.png" alt="Edington Studio" loading="lazy" decoding="async" /></div>
+              <span class="work-card-arrow">{ARROW}</span>
+            </div>
+          </div>
+          <div class="work-card-media work-card-media--image" style="background-image: url('assets/edington-studio-work.jpg');"></div>
+        </a>
+        </div>
+
+        <div class="work-card-wrap">
+        <a class="work-card" href="https://www.shopquell.co" target="_blank" rel="noopener" style="--card-bg:#3A1C2A; --card-ink:#DBCAFF;">
+          <div class="work-card-head">
+            <div class="work-card-top">
+              <span>Est. 2023</span>
+              <span>Art supply brand</span>
+            </div>
+            <div class="work-card-main">
+              <div class="work-card-logo"><img src="assets/QuellLogo-lavender.svg" alt="Quell" loading="lazy" decoding="async" /></div>
+              <span class="work-card-arrow">{ARROW}</span>
+            </div>
+          </div>
+          <div class="work-card-media work-card-media--image" style="background-image: url('assets/quell-product.jpg');"></div>
+        </a>
+        </div>
+
+        <div class="work-card-wrap">
+        <a class="work-card" href="https://www.mrsniffs.co" target="_blank" rel="noopener" style="--card-bg:#D96B61; --card-ink:#000000;">
+          <div class="work-card-head">
+            <div class="work-card-top">
+              <span>Newest</span>
+              <span>Incense brand</span>
+            </div>
+            <div class="work-card-main">
+              <div class="work-card-logo" style="height: clamp(38px, 4.8vw, 58px);"><img src="assets/mr-sniffs-wordmark-black-transparent.png" alt="Mr. Sniff&rsquo;s" loading="lazy" decoding="async" /></div>
+              <span class="work-card-arrow">{ARROW}</span>
+            </div>
+          </div>
+          <div class="work-card-media work-card-media--image" style="background-image: url('assets/mr-sniffs-incense.jpg');"></div>
+        </a>
+        </div>
+
+        <div class="work-card-wrap work-card-wrap--last">
+        <div class="work-card work-card--static" style="--card-bg:#3A3A3A; --card-ink:#BDBDBD;">
+          <div class="work-card-head">
+            <div class="work-card-top">
+              <span>2013&ndash;2023</span>
+              <span>Built &amp; sold</span>
+            </div>
+            <div class="work-card-main">
+              <div class="work-card-logo" style="height: clamp(38px, 4.8vw, 58px);"><img src="assets/PuddlePirateLogo-gray-trimmed.png" alt="Puddle Pirate Co." loading="lazy" decoding="async" /></div>
+            </div>
+          </div>
+          <div class="work-card-media work-card-media--image" style="background-image: url('assets/puddle-pirate-hats.jpg');"></div>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight" style="border-top: 1px solid var(--color-border);">
       <div class="wrap split-grid">
         <div>
           <p class="eyebrow">How I think</p>
@@ -74,17 +106,17 @@ INDEX_MAIN = f'''  <main id="main">
       </div>
     </section>
 
-    <section class="section section--tight" style="border-top: 1px solid var(--color-divider);">
+    <section class="section section--tight" style="border-top: 1px solid var(--color-border);">
       <div class="wrap">
         <p class="eyebrow">Notes</p>
         <h2 class="display-xl" style="margin-bottom: var(--space-10);">Some things I&rsquo;ve written down</h2>
-        <div class="venture-subgrid">
-          <a class="card" href="notes.html#discipline-is-the-strategy" style="text-decoration: none; color: inherit;">
+        <div class="teaser-grid">
+          <a class="card" href="notes.html#discipline-is-the-strategy">
             <p class="note-meta">On building</p>
             <h3 class="display-md" style="margin-bottom: var(--space-3);">Discipline is the strategy</h3>
             <p class="text-muted">Strategy tells you what to build. Discipline is what actually builds it.</p>
           </a>
-          <a class="card" href="notes.html#what-owning-it-taught-me" style="text-decoration: none; color: inherit;">
+          <a class="card" href="notes.html#what-owning-it-taught-me">
             <p class="note-meta">On owning what you sell</p>
             <h3 class="display-md" style="margin-bottom: var(--space-3);">What running my own P&amp;L taught me</h3>
             <p class="text-muted">Client work teaches you craft. Owning a brand teaches you consequence.</p>
@@ -100,7 +132,7 @@ b.write_page(
     "index.html",
     "",
     "Chris Edington \u2014 creative director and founder, Pittsburgh",
-    "Creative director and founder of Edington Studio, Quell, and Mr. Sniff\u2019s. Fifteen years building brands, two of them my own.",
+    "Creative director and founder of Edington Studio, Quell, Mr. Sniff\u2019s, and Puddle Pirate Co. Fifteen years building brands, some of them my own.",
     INDEX_MAIN,
     og_title="Built. Building. Both.",
 )
@@ -112,15 +144,15 @@ ABOUT_MAIN = '''  <main id="main">
     <section class="page-hero">
       <div class="wrap">
         <p class="eyebrow">About</p>
-        <h1 class="display-2xl display-xl" style="font-size: var(--text-3xl); margin-bottom: var(--space-4);">The long version</h1>
-        <p class="lede">Fifteen years building brands. Two of them my own.</p>
+        <h1 class="display-3xl" style="margin-bottom: var(--space-4);">The long version</h1>
+        <p class="lede">Fifteen years building brands. Some of them my own.</p>
       </div>
     </section>
 
     <section class="section section--tight">
       <div class="wrap about-grid">
         <div class="prose">
-          <p>I&rsquo;m Chris Edington. I grew up in Wake Forest, North Carolina, and joined the Coast Guard in 2004. Four years of service took me to Charleston, South Carolina, where I started in design.</p>
+          <p>I&rsquo;m Chris Edington. I grew up in Wake Forest, North Carolina, and joined the Coast Guard in 2004. Four years of service took me to Charleston, South Carolina, where I started in design and earned a B.A. in Graphic Design from the Art Institute of Charleston in 2011.</p>
           <p>I spent the next decade working agency-side on brands like Porsche, Audi, Milk-Bone, and Rachael Ray Nutrish, then went in-house as creative director and later chief marketing officer at Island Brands USA, where I helped raise more than $5 million from over 6,000 investors and shipped the can design that carried the brand into national distribution.</p>
           <p>In 2013 I founded Puddle Pirate Co., a lifestyle brand for the Coast Guard community. Ten years and more than 10,000 shirts later, I sold it in 2023.</p>
           <p>In 2023 my wife Kaitlyn and I co-founded Quell, an art supply company built for working artists and educators. She runs the community and the classroom side. I run the brand and the build.</p>
@@ -147,12 +179,60 @@ ABOUT_MAIN = '''  <main id="main">
               <dt>Certifications</dt>
               <dd>VOSB &middot; SBA-certified small business &middot; PA VBE</dd>
             </div>
+            <div class="info-item">
+              <dt>Education</dt>
+              <dd>B.A. Graphic Design, Art Institute of Charleston, 2011</dd>
+            </div>
           </dl>
         </aside>
       </div>
     </section>
 
-    <section id="philosophy" class="section section--tight" style="border-top: 1px solid var(--color-divider); scroll-margin-top: 96px;">
+    <section class="section section--tight" style="border-top: 1px solid var(--color-border);">
+      <div class="wrap">
+        <p class="eyebrow">Timeline</p>
+        <h2 class="display-xl" style="margin-bottom: var(--space-10);">How I got here</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <p class="timeline-date">2024&ndash;now</p>
+            <div>
+              <p class="display-lg" style="margin-bottom: var(--space-2);">Edington Studio &middot; Founder &amp; creative director</p>
+              <p class="text-muted">Naming, identity, packaging, and web for founder-led and product companies.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <p class="timeline-date">2023&ndash;now</p>
+            <div>
+              <p class="display-lg" style="margin-bottom: var(--space-2);">Quell &middot; Co-founder</p>
+              <p class="text-muted">Art supplies for working artists and educators, co-founded with my wife Kaitlyn.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <p class="timeline-date">~2017&ndash;2021</p>
+            <div>
+              <p class="display-lg" style="margin-bottom: var(--space-2);">Island Brands USA &middot; Creative director, then CMO</p>
+              <p class="text-muted">Helped raise more than $5 million from over 6,000 investors and shipped the can design that carried the brand into national distribution.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <p class="timeline-date">2013&ndash;2023</p>
+            <div>
+              <p class="display-lg" style="margin-bottom: var(--space-2);">Puddle Pirate Co. &middot; Founder</p>
+              <p class="text-muted">A lifestyle brand for the Coast Guard community. Built it, ran it for ten years, sold it in 2023.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <p class="timeline-date">2004&ndash;2008</p>
+            <div>
+              <p class="display-lg" style="margin-bottom: var(--space-2);">U.S. Coast Guard</p>
+              <p class="text-muted">Four years of active duty, stationed out of Charleston, South Carolina, where I started in design.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="philosophy" class="section section--tight" style="border-top: 1px solid var(--color-border); scroll-margin-top: 96px;">
       <div class="wrap" style="max-width: var(--content-default); margin-inline: auto;">
         <p class="eyebrow">Philosophy</p>
         <h2 class="display-xl" style="margin-bottom: var(--space-8);">How I work</h2>
@@ -175,80 +255,14 @@ b.write_page(
     ABOUT_MAIN,
 )
 
-# ---------------------------------------------------------------- VENTURES
-VENTURES_MAIN = '''  <main id="main">
-    <section class="page-hero">
-      <div class="wrap">
-        <p class="eyebrow">Ventures</p>
-        <h1 style="font-size: var(--text-3xl); font-family: var(--font-display); font-weight: 700; text-transform: uppercase; line-height: 0.98; margin-bottom: var(--space-4);">What I&rsquo;ve built</h1>
-        <p class="lede">Edington Studio is the practice. These are the brands I own and operate with it.</p>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="wrap">
-        <div class="venture-grid">
-          <div class="venture-card venture-card--primary">
-            <span class="venture-tag">The practice &middot; Est. 2024</span>
-            <img src="assets/Edington-Logo_White.png" alt="Edington Studio" class="venture-logo venture-logo-light" width="220" height="80" loading="lazy" decoding="async" />
-            <img src="assets/EdingtonStudioLogo.png" alt="Edington Studio" class="venture-logo venture-logo-dark" width="220" height="80" loading="lazy" decoding="async" />
-            <p class="lede" style="color: inherit; max-width: 56ch;">Naming, identity, packaging, and web for founder-led and product companies. The studio behind every brand on this page, including this one. Certified veteran-owned small business. Government and commercial work.</p>
-            <a class="btn-text" href="https://www.edington.co" target="_blank" rel="noopener" style="color: inherit;">Visit edington.co ''' + ARROW + '''</a>
-          </div>
-
-          <div class="venture-subgrid">
-            <div class="venture-card">
-              <span class="venture-tag">Brand I own and operate &middot; Est. 2023</span>
-              <img src="assets/QuellLogo-dark.svg" alt="Quell" class="venture-logo venture-logo-light" style="height: 40px;" width="160" height="40" loading="lazy" decoding="async" />
-              <img src="assets/QuellLogo.svg" alt="Quell" class="venture-logo venture-logo-dark" style="height: 40px;" width="160" height="40" loading="lazy" decoding="async" />
-              <p class="text-muted">An art supply company for working artists and educators, co-founded with my wife Kaitlyn. She runs the community and the classroom. I run the brand and the build.</p>
-              <a class="btn-text" href="https://www.shopquell.co" target="_blank" rel="noopener">Visit shopquell.co ''' + ARROW + '''</a>
-            </div>
-            <div class="venture-card">
-              <span class="venture-tag">Brand I own and operate &middot; Newest</span>
-              <img src="assets/mr-sniffs-wordmark-white.png" alt="Mr. Sniff&rsquo;s" style="border-radius: var(--radius-md); width: 100%; height: auto;" width="600" height="255" loading="lazy" decoding="async" />
-              <p class="text-muted">An incense brand I&rsquo;m building from scratch: sourcing, packaging, and fulfillment, out of Pittsburgh. Incense for people who actually have a nose.</p>
-            </div>
-          </div>
-
-          <div class="venture-card venture-card--closed">
-            <span class="venture-tag">Closed &middot; Sold in 2023</span>
-            <h3 class="display-lg">Puddle Pirate Co.</h3>
-            <p class="text-muted" style="max-width: 60ch;">A lifestyle brand for the Coast Guard community. Ten years and more than 10,000 shirts, then an exit in 2023. My first proof that I could build something and see it through to the other side.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--tight" style="border-top: 1px solid var(--color-divider);">
-      <div class="wrap">
-        <p class="eyebrow">Selected client work</p>
-        <h2 class="display-xl" style="margin-bottom: var(--space-6);">From the studio</h2>
-        <p class="lede" style="margin-bottom: var(--space-6);">Magnolia Plantation &amp; Gardens, Island Brands USA, Cirtec Medical, and Gamblin&rsquo; Golf, among others.</p>
-        <a class="btn-text" href="https://www.edington.co" target="_blank" rel="noopener">See the full portfolio at edington.co ''' + ARROW + '''</a>
-      </div>
-    </section>
-  </main>
-'''
-
-b.write_page(
-    "ventures.html",
-    "ventures.html",
-    "Ventures \u2014 Chris Edington",
-    "Edington Studio, Quell, and Mr. Sniff\u2019s: the brands Chris Edington owns and operates, plus Puddle Pirate Co., built and sold in 2023.",
-    VENTURES_MAIN,
-)
-
-print("done: about, ventures")
+print("done: about")
 
 # ---------------------------------------------------------------- GOVERNMENT
-SHIELD = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6l-8-4Z"/></svg>'
-
 GOVERNMENT_MAIN = '''  <main id="main">
     <section class="page-hero">
       <div class="wrap">
         <p class="eyebrow">Government &amp; public sector</p>
-        <h1 style="font-size: var(--text-3xl); font-family: var(--font-display); font-weight: 700; text-transform: uppercase; line-height: 0.98; margin-bottom: var(--space-4);">Certified.<br />Registered.<br />Ready to bid.</h1>
+        <h1 class="display-3xl" style="margin-bottom: var(--space-4);">Certified.<br />Registered.<br />Ready to bid.</h1>
         <p class="lede">Edington Studio is a veteran-owned small business built for public sector branding, marketing, and web work.</p>
       </div>
     </section>
@@ -311,8 +325,8 @@ GOVERNMENT_MAIN = '''  <main id="main">
           <p class="display-md" style="margin-bottom: var(--space-3);">Point of contact</p>
           <p style="font-weight: 600;">Chris Edington</p>
           <p class="text-muted" style="margin-bottom: var(--space-1);">Edington Studios LLC, DBA Edington Studio</p>
-          <a href="mailto:chris@edington.co" style="color: var(--color-primary); font-weight: 600; text-decoration: none; display: block;">chris@edington.co</a>
-          <a href="tel:+19199461693" style="color: var(--color-primary); font-weight: 600; text-decoration: none; display: block;">919.946.1693</a>
+          <a href="mailto:chris@edington.co" style="color: var(--color-fg); font-weight: 600; text-decoration: none; display: block;">chris@edington.co</a>
+          <a href="tel:+19199461693" style="color: var(--color-fg); font-weight: 600; text-decoration: none; display: block;">919.946.1693</a>
         </div>
       </div>
     </section>
@@ -332,7 +346,7 @@ NOTES_MAIN = '''  <main id="main">
     <section class="page-hero">
       <div class="wrap">
         <p class="eyebrow">Notes</p>
-        <h1 style="font-size: var(--text-3xl); font-family: var(--font-display); font-weight: 700; text-transform: uppercase; line-height: 0.98; margin-bottom: var(--space-4);">Things I&rsquo;ve written down</h1>
+        <h1 class="display-3xl" style="margin-bottom: var(--space-4);">Things I&rsquo;ve written down</h1>
         <p class="lede">Short, occasional. On brand, business, and building more than one thing at a time.</p>
       </div>
     </section>
@@ -381,7 +395,7 @@ CONTACT_MAIN = '''  <main id="main">
     <section class="page-hero">
       <div class="wrap">
         <p class="eyebrow">Contact</p>
-        <h1 style="font-size: var(--text-3xl); font-family: var(--font-display); font-weight: 700; text-transform: uppercase; line-height: 0.98; margin-bottom: var(--space-4);">Get in touch</h1>
+        <h1 class="display-3xl" style="margin-bottom: var(--space-4);">Say hello</h1>
         <p class="lede">No form. Just reach out directly.</p>
       </div>
     </section>
@@ -419,7 +433,7 @@ CONTACT_MAIN = '''  <main id="main">
       </div>
     </section>
 
-    <section class="section section--tight" style="border-top: 1px solid var(--color-divider);">
+    <section class="section section--tight" style="border-top: 1px solid var(--color-border);">
       <div class="wrap" style="max-width: var(--content-narrow); margin-inline: auto; text-align: left;">
         <p class="display-md" style="margin-bottom: var(--space-3);">Looking for the studio?</p>
         <p class="text-muted" style="margin-bottom: var(--space-5);">For client and government work, visit the studio site directly.</p>

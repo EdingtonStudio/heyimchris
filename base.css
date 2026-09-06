@@ -28,6 +28,21 @@ body {
   background-color: var(--color-bg);
 }
 
+/* Dot grid as a fixed pseudo-element instead of background-attachment:fixed —
+   iOS/iPadOS Safari does not honor fixed backgrounds while scrolling, so the
+   grid would drift with the page. A position:fixed layer holds still on every
+   browser. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.16) 1px, transparent 1.6px);
+  background-size: 24px 24px;
+  background-position: 0 0;
+}
+
 img,
 picture,
 video,
@@ -66,12 +81,12 @@ figcaption {
 }
 
 ::selection {
-  background: oklch(from var(--color-primary) l c h / 0.25);
+  background: rgba(255, 255, 255, 0.2);
   color: var(--color-text);
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-primary);
+  outline: 2px solid var(--color-fg);
   outline-offset: 3px;
   border-radius: var(--radius-sm);
 }
@@ -108,7 +123,8 @@ select {
     color var(--transition-interactive),
     background var(--transition-interactive),
     border-color var(--transition-interactive),
-    box-shadow var(--transition-interactive);
+    box-shadow var(--transition-interactive),
+    transform var(--transition-interactive);
 }
 
 .sr-only {
