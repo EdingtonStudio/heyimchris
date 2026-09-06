@@ -26,40 +26,50 @@
     initWorkStack();
   });
 
-  // Work-card stack: each card overlaps the next through a large negative
-  // margin (see style.css). As the following card's top edge slides up over
-  // this one's bottom edge, scale this card down slightly and nudge it up
-  // so it visibly "recedes" behind the incoming card instead of a flat,
-  // static hand-off. Progress is driven by the REAL measured overlap
-  // between adjacent cards, not a fixed scroll distance, so it always
-  // tracks what's actually happening on screen.
+  // Work-card stack recede. Card i eases back as the NEXT card travels up
+  // the viewport: progress runs 0 (next card entering at the bottom) to 1
+  // (next card reaching its sticky pin line), so the recede tracks the
+  // whole approach instead of popping in the last few hundred pixels.
+  //
+  // Two rules keep it smooth:
+  // - Measure the next card's WRAP, never the card itself. Wraps are never
+  //   transformed, so the measurement can't feed back into itself.
+  // - Write a single --recede custom property; style.css derives the
+  //   transform and dim from it, so nothing else fights over transform.
   function initWorkStack() {
-    var cards = Array.prototype.slice.call(document.querySelectorAll('.work-card'));
-    if (cards.length < 2) return;
+    var wraps = Array.prototype.slice.call(document.querySelectorAll('.work-card-wrap'));
+    if (wraps.length < 2) return;
+    var cards = wraps.map(function (w) {
+      return w.querySelector('.work-card');
+    });
+    if (cards.some(function (c) { return !c; })) return;
 
     var reduceMotion =
       window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduceMotion) return;
 
-    var RECEDE_RANGE = 240; // px of adjacent overlap over which the recede fully completes — must match style.css's OVERLAP_PULL (.work-card-wrap + .work-card-wrap margin-top)
+    var stickyTop = 100;
+    function measure() {
+      var t = parseFloat(getComputedStyle(cards[0]).top);
+      if (!isNaN(t)) stickyTop = t;
+    }
+
     var ticking = false;
+    var last = [];
 
     function update() {
       ticking = false;
-      for (var i = 0; i < cards.length; i++) {
-        var next = cards[i + 1];
-        if (!next) {
-          cards[i].style.transform = '';
-          continue;
+      var vh = window.innerHeight;
+      var travel = Math.max(1, vh - stickyTop);
+      for (var i = 0; i < cards.length - 1; i++) {
+        var nextTop = wraps[i + 1].getBoundingClientRect().top;
+        var p = (vh - nextTop) / travel;
+        p = p < 0 ? 0 : p > 1 ? 1 : p;
+        p = Math.round(p * 1000) / 1000;
+        if (p !== last[i]) {
+          last[i] = p;
+          cards[i].style.setProperty('--recede', p);
         }
-        var rect = cards[i].getBoundingClientRect();
-        var nextRect = next.getBoundingClientRect();
-        var overlap = rect.bottom - nextRect.top;
-        var progress = overlap <= 0 ? 0 : overlap >= RECEDE_RANGE ? 1 : overlap / RECEDE_RANGE;
-        var scale = 1 - progress * 0.06;
-        var translate = progress * -28;
-        cards[i].style.transform =
-          progress === 0 ? '' : 'translateY(' + translate.toFixed(2) + 'px) scale(' + scale.toFixed(4) + ')';
       }
     }
 
@@ -71,7 +81,11 @@
     }
 
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
+    window.addEventListener('resize', function () {
+      measure();
+      onScroll();
+    });
+    measure();
     update();
   }
 })();

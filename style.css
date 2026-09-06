@@ -443,16 +443,33 @@
   will-change: transform;
   transform-origin: center top;
   z-index: 1;
+  /* --recede (0..1) is written by app.js as the next card approaches its
+     pin line. The transform and dim derive from it here, so scroll only
+     ever touches one custom property and never fights other transforms. */
+  --recede: 0;
+  transform: translateY(calc(var(--recede) * -14px)) scale(calc(1 - 0.05 * var(--recede)));
+}
+/* Receding cards dim under the incoming card, nitro-style. */
+.work-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #000;
+  opacity: calc(var(--recede) * 0.3);
+  pointer-events: none;
+  z-index: 6;
+  border-radius: inherit;
 }
 .work-card-wrap:nth-child(2) .work-card { z-index: 2; }
 .work-card-wrap:nth-child(3) .work-card { z-index: 3; }
 .work-card-wrap:nth-child(4) .work-card { z-index: 4; }
+/* Hover lifts with shadow only. A hover transform here would override
+   the scroll-linked recede transform and snap. */
 a.work-card:hover {
   box-shadow:
     var(--shadow-card-hover),
     0 -50px 90px -40px rgba(0, 0, 0, 0.45),
     0 -110px 160px -60px rgba(0, 0, 0, 0.3);
-  transform: translateY(-3px);
 }
 .work-card--static {
   cursor: default;
