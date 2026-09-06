@@ -23,9 +23,11 @@ def render_nav(active):
     return "\n        ".join(links)
 
 
-def head(title, description, canonical, og_title=None, og_description=None):
+def head(title, description, canonical, og_title=None, og_description=None, extra_head=""):
     og_title = og_title or title
     og_description = og_description or description
+    if canonical == "index.html":
+        canonical = ""
     return f'''<!doctype html>
 <html lang="en">
 <head>
@@ -47,7 +49,7 @@ def head(title, description, canonical, og_title=None, og_description=None):
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="base.css" />
   <link rel="stylesheet" href="style.css" />
-</head>
+{extra_head}</head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 '''
@@ -78,6 +80,7 @@ FOOTER = '''  <footer class="site-footer">
             <span class="brand-dot">.</span>Chris Edington
           </a>
           <p class="text-muted" style="margin-top: var(--space-4);">Creative director and founder. Building Edington Studio, Quell, and Mr. Sniff&rsquo;s from Pittsburgh, PA.</p>
+          <p class="footer-veteran">A certified veteran-owned small business<span>VOSB &middot; SBA VetCert &middot; SAM.gov registered</span></p>
         </div>
         <div class="footer-cols">
           <div class="footer-col">
@@ -108,8 +111,8 @@ FOOTER = '''  <footer class="site-footer">
 '''
 
 
-def write_page(filename, active, title, description, main_html, og_title=None, og_description=None):
-    html = head(title, description, filename, og_title, og_description) + header(active) + main_html + FOOTER
+def write_page(filename, active, title, description, main_html, og_title=None, og_description=None, extra_head=""):
+    html = head(title, description, filename, og_title, og_description, extra_head) + header(active) + main_html + FOOTER
     with open(os.path.join(ROOT, filename), "w") as f:
         f.write(html)
     print("wrote", filename)

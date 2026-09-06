@@ -1,0 +1,16 @@
+{
+  "redirects": [
+    { "source": "/home", "destination": "/", "permanent": true },
+    { "source": "/work", "destination": "/", "permanent": true },
+    { "source": "/work/:path*", "destination": "/", "permanent": true },
+    { "source": "/portfolio", "destination": "/", "permanent": true },
+    { "source": "/portfolio/:path*", "destination": "/", "permanent": true },
+    { "source": "/projects", "destination": "/", "permanent": true },
+    { "source": "/projects/:path*", "destination": "/", "permanent": true },
+    { "source": "/ventures", "destination": "/", "permanent": true },
+    { "source": "/ventures/:path*", "destination": "/", "permanent": true },
+    { "source": "/about-me", "destination": "/about.html", "permanent": true },
+    { "source": "/bio", "destination": "/about.html", "permanent": true },
+    { "source": "/contact-me", "destination": "/contact.html", "permanent": true }
+  ]
+}

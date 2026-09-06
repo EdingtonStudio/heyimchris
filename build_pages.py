@@ -4,6 +4,11 @@ import build as b
 ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>'
 SHIELD = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6l-8-4Z"/></svg>'
 
+PERSON_SCHEMA = '''  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Person","name":"Chris Edington","url":"https://heyimchris.com/","jobTitle":"Creative director and founder","address":{"@type":"PostalAddress","addressLocality":"Pittsburgh","addressRegion":"PA","addressCountry":"US"},"worksFor":{"@type":"Organization","name":"Edington Studio","url":"https://www.edington.co"},"sameAs":["https://www.edington.co","https://www.shopquell.co","https://www.mrsniffs.co","https://www.linkedin.com/in/chris-edington/","https://dribbble.com/ChrisEdington"]}
+  </script>
+'''
+
 # ---------------------------------------------------------------- HOME
 INDEX_MAIN = f'''  <main id="main">
     <section class="hero">
@@ -134,7 +139,7 @@ b.write_page(
     "Chris Edington \u2014 creative director and founder, Pittsburgh",
     "Creative director and founder of Edington Studio, Quell, Mr. Sniff\u2019s, and Puddle Pirate Co. Fifteen years building brands, some of them my own.",
     INDEX_MAIN,
-    og_title="Built. Building. Both.",
+    extra_head=PERSON_SCHEMA,
 )
 
 print("done: index")
@@ -177,7 +182,7 @@ ABOUT_MAIN = '''  <main id="main">
             </div>
             <div class="info-item">
               <dt>Certifications</dt>
-              <dd>VOSB &middot; SBA-certified small business &middot; PA VBE</dd>
+              <dd>VOSB (SBA VetCert) &middot; self-certified PA VBE</dd>
             </div>
             <div class="info-item">
               <dt>Education</dt>
@@ -274,7 +279,7 @@ GOVERNMENT_MAIN = '''  <main id="main">
         </div>
         <div class="badge-row" style="margin-bottom: var(--space-12);">
           <span class="badge">''' + SHIELD + ''' VOSB &middot; SBA VetCert</span>
-          <span class="badge">''' + SHIELD + ''' SBA-certified small business</span>
+          <span class="badge">''' + SHIELD + ''' Registered in SAM.gov</span>
           <span class="badge">''' + SHIELD + ''' PA Small Business + VBE</span>
         </div>
 
@@ -298,19 +303,19 @@ GOVERNMENT_MAIN = '''  <main id="main">
             </div>
             <div class="info-item">
               <dt>NAICS 541430 (primary)</dt>
-              <dd>Graphic design, identity &amp; packaging</dd>
+              <dd>Graphic design services</dd>
             </div>
             <div class="info-item">
               <dt>NAICS 541613</dt>
-              <dd>Marketing consulting</dd>
+              <dd>Marketing consulting services</dd>
             </div>
             <div class="info-item">
               <dt>NAICS 541511</dt>
-              <dd>Custom web development (Shopify, Webflow)</dd>
+              <dd>Custom computer programming services</dd>
             </div>
             <div class="info-item">
               <dt>NAICS 541810</dt>
-              <dd>Advertising</dd>
+              <dd>Advertising agencies</dd>
             </div>
           </dl>
         </div>
@@ -337,7 +342,7 @@ b.write_page(
     "government.html",
     "government.html",
     "Government \u2014 Chris Edington",
-    "Edington Studio is a VOSB, SBA-certified small business, and PA VBE registered on SAM.gov. Certifications, NAICS codes, and a direct point of contact.",
+    "Edington Studio is a veteran-owned small business through SBA VetCert, a self-certified PA VBE, registered in SAM.gov. Certifications, NAICS codes, and a direct point of contact.",
     GOVERNMENT_MAIN,
 )
 
