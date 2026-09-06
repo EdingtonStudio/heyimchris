@@ -33,7 +33,7 @@ INDEX_MAIN = f'''  <main id="main">
 
     <section class="wrap">
       <div class="work-stack">
-        <div class="work-card-wrap">
+        <div class="work-sentinel" aria-hidden="true"></div>
         <a class="work-card" href="https://www.edington.co" target="_blank" rel="noopener" style="--card-bg:#ECE8DD; --card-ink:#2733D9;">
           <div class="work-card-head">
             <div class="work-card-top">
@@ -47,9 +47,8 @@ INDEX_MAIN = f'''  <main id="main">
           </div>
           <div class="work-card-media work-card-media--image" style="background-image: url('assets/edington-studio-work.jpg');"></div>
         </a>
-        </div>
 
-        <div class="work-card-wrap">
+        <div class="work-sentinel" aria-hidden="true"></div>
         <a class="work-card" href="https://www.shopquell.co" target="_blank" rel="noopener" style="--card-bg:#3A1C2A; --card-ink:#DBCAFF;">
           <div class="work-card-head">
             <div class="work-card-top">
@@ -63,9 +62,8 @@ INDEX_MAIN = f'''  <main id="main">
           </div>
           <div class="work-card-media work-card-media--image" style="background-image: url('assets/quell-product.jpg');"></div>
         </a>
-        </div>
 
-        <div class="work-card-wrap">
+        <div class="work-sentinel" aria-hidden="true"></div>
         <a class="work-card" href="https://www.mrsniffs.co" target="_blank" rel="noopener" style="--card-bg:#D96B61; --card-ink:#000000;">
           <div class="work-card-head">
             <div class="work-card-top">
@@ -79,9 +77,8 @@ INDEX_MAIN = f'''  <main id="main">
           </div>
           <div class="work-card-media work-card-media--image" style="background-image: url('assets/mr-sniffs-incense.jpg');"></div>
         </a>
-        </div>
 
-        <div class="work-card-wrap work-card-wrap--last">
+        <div class="work-sentinel" aria-hidden="true"></div>
         <div class="work-card work-card--static" style="--card-bg:#3A3A3A; --card-ink:#BDBDBD;">
           <div class="work-card-head">
             <div class="work-card-top">
@@ -93,7 +90,6 @@ INDEX_MAIN = f'''  <main id="main">
             </div>
           </div>
           <div class="work-card-media work-card-media--image" style="background-image: url('assets/puddle-pirate-hats.jpg');"></div>
-        </div>
         </div>
       </div>
     </section>
@@ -107,7 +103,6 @@ INDEX_MAIN = f'''  <main id="main">
         <div>
           <p class="lede" style="margin-bottom: var(--space-6);">Most creative work fails at the handoff, not the concept. I structure every project around what actually ships: fewer rounds of exploration, more rounds of production.</p>
           <a class="btn-text" href="about.html#philosophy">Read how I work {ARROW}</a>
-        </div>
       </div>
     </section>
 
@@ -126,7 +121,6 @@ INDEX_MAIN = f'''  <main id="main">
             <h3 class="display-md" style="margin-bottom: var(--space-3);">What running my own P&amp;L taught me</h3>
             <p class="text-muted">Client work teaches you craft. Owning a brand teaches you consequence.</p>
           </a>
-        </div>
         <a class="btn-text" href="notes.html" style="margin-top: var(--space-10);">Read all notes {ARROW}</a>
       </div>
     </section>
@@ -324,7 +318,6 @@ GOVERNMENT_MAIN = '''  <main id="main">
           <p class="display-md" style="margin-bottom: var(--space-3);">Capabilities statement</p>
           <p class="text-muted" style="margin-bottom: var(--space-5);">Available on request. Email and I&rsquo;ll send the current version.</p>
           <a class="btn btn-primary" href="mailto:chris@edington.co?subject=Capabilities%20statement%20request">Request capabilities statement</a>
-        </div>
 
         <div class="card">
           <p class="display-md" style="margin-bottom: var(--space-3);">Point of contact</p>
@@ -332,7 +325,6 @@ GOVERNMENT_MAIN = '''  <main id="main">
           <p class="text-muted" style="margin-bottom: var(--space-1);">Edington Studios LLC, DBA Edington Studio</p>
           <a href="mailto:chris@edington.co" style="color: var(--color-fg); font-weight: 600; text-decoration: none; display: block;">chris@edington.co</a>
           <a href="tel:+19199461693" style="color: var(--color-fg); font-weight: 600; text-decoration: none; display: block;">919.946.1693</a>
-        </div>
       </div>
     </section>
   </main>

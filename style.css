@@ -397,31 +397,38 @@
   padding-top: var(--space-4);
   padding-bottom: clamp(var(--space-16), 10vw, var(--space-24));
 }
+.work-stack::after {
+  /* keeps the full deck pinned for a beat before it scrolls away */
+  content: "";
+  height: 24vh;
+}
 
-/* Each card lives inside a tall ".work-card-wrap" slot. The wrap is much
-   taller than the card itself (card height + HOLD), which is what lets the
-   sticky card sit still, fully visible, for a real scroll distance before
-   anything happens to it — that's the "HOLD" phase. Consecutive wraps then
-   pull up onto one another by OVERLAP_PULL (a fixed px amount, matched to
-   app.js's RECEDE_RANGE) so the incoming card's approach and the outgoing
-   card's sticky release line up with zero gap: overlap grows smoothly from
-   0 to OVERLAP_PULL over exactly OVERLAP_PULL px of scroll, right as the
-   outgoing card is finishing its hold and about to release. Because later
-   cards sit later in the DOM, they paint over earlier ones by default, and
-   since every card shares the same sticky offset, the incoming card
-   physically covers the outgoing one instead of handing off at a flush,
-   gapless edge. Do not shrink OVERLAP_PULL below app.js's RECEDE_RANGE or
-   the recede animation will look clipped/incomplete. */
+/* True pinned stack: every card is a direct child of .work-stack and
+   shares the same sticky top, so each card's sticky range runs to the
+   END of the stack, not to a per-card wrapper. A covered card
+   therefore stays pinned dead-still underneath the incoming one and
+   the whole deck only releases together when the stack ends, which is
+   the reference behavior. Later cards paint over earlier ones via
+   z-index. */
+/* Taller than the viewport on purpose: while a card is pinned its
+   bottom edge (and the image's rounded bottom corners) sit below the
+   fold, so the media reads as bleeding down past the fold, matching
+   the reference. Only the final card ever shows its bottom, at the
+   very end of the scroll. */
 :root {
-  --card-h: clamp(600px, 88vh, 940px);
+  --card-h: clamp(640px, 108vh, 1240px);
 }
 
-.work-card-wrap {
-  position: relative;
-  height: calc(var(--card-h) + 62vh);
+/* Zero-height flow markers. Each sits at its card's natural slot in
+   the stack, never moves (no sticky, no transform), and is what
+   app.js measures to drive the recede without feedback. The margin
+   between a card and the next sentinel is the HOLD: how long a card
+   sits fully pinned before the next one starts its approach. */
+.work-sentinel {
+  height: 0;
 }
-.work-card-wrap + .work-card-wrap {
-  margin-top: -240px; /* OVERLAP_PULL — must match app.js RECEDE_RANGE */
+.work-card + .work-sentinel {
+  margin-top: 38vh;
 }
 
 .work-card {
@@ -440,6 +447,7 @@
   color: var(--card-ink, var(--color-fg));
   background-color: var(--card-bg, var(--color-surface));
   height: var(--card-h);
+  flex-shrink: 0;
   will-change: transform;
   transform-origin: center top;
   z-index: 1;
@@ -460,9 +468,9 @@
   z-index: 6;
   border-radius: inherit;
 }
-.work-card-wrap:nth-child(2) .work-card { z-index: 2; }
-.work-card-wrap:nth-child(3) .work-card { z-index: 3; }
-.work-card-wrap:nth-child(4) .work-card { z-index: 4; }
+.work-stack > .work-card:nth-child(4) { z-index: 2; }
+.work-stack > .work-card:nth-child(6) { z-index: 3; }
+.work-stack > .work-card:nth-child(8) { z-index: 4; }
 /* Hover lifts with shadow only. A hover transform here would override
    the scroll-linked recede transform and snap. */
 a.work-card:hover {

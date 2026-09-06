@@ -32,17 +32,15 @@
   // whole approach instead of popping in the last few hundred pixels.
   //
   // Two rules keep it smooth:
-  // - Measure the next card's WRAP, never the card itself. Wraps are never
-  //   transformed, so the measurement can't feed back into itself.
+  // - Measure the next card's flow SENTINEL, never the card itself.
+  //   Sentinels never stick or transform, so the measurement can't
+  //   feed back into itself.
   // - Write a single --recede custom property; style.css derives the
   //   transform and dim from it, so nothing else fights over transform.
   function initWorkStack() {
-    var wraps = Array.prototype.slice.call(document.querySelectorAll('.work-card-wrap'));
-    if (wraps.length < 2) return;
-    var cards = wraps.map(function (w) {
-      return w.querySelector('.work-card');
-    });
-    if (cards.some(function (c) { return !c; })) return;
+    var sentinels = Array.prototype.slice.call(document.querySelectorAll('.work-sentinel'));
+    var cards = Array.prototype.slice.call(document.querySelectorAll('.work-card'));
+    if (cards.length < 2 || sentinels.length !== cards.length) return;
 
     var reduceMotion =
       window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -54,38 +52,64 @@
       if (!isNaN(t)) stickyTop = t;
     }
 
-    var ticking = false;
-    var last = [];
+    // Damped follow, the Framer feel: each frame the applied value
+    // eases a fraction of the way toward the scroll-derived target
+    // instead of jumping to it, so the recede trails the scroll
+    // slightly and settles with inertia. The rAF loop only runs
+    // while something is still moving.
+    var DAMPING = 0.16;
+    var EPSILON = 0.0005;
+    var target = [];
+    var current = [];
+    var running = false;
 
-    function update() {
-      ticking = false;
+    function computeTargets() {
       var vh = window.innerHeight;
       var travel = Math.max(1, vh - stickyTop);
       for (var i = 0; i < cards.length - 1; i++) {
-        var nextTop = wraps[i + 1].getBoundingClientRect().top;
+        var nextTop = sentinels[i + 1].getBoundingClientRect().top;
         var p = (vh - nextTop) / travel;
-        p = p < 0 ? 0 : p > 1 ? 1 : p;
-        p = Math.round(p * 1000) / 1000;
-        if (p !== last[i]) {
-          last[i] = p;
-          cards[i].style.setProperty('--recede', p);
+        target[i] = p < 0 ? 0 : p > 1 ? 1 : p;
+      }
+    }
+
+    function tick() {
+      computeTargets();
+      var settled = true;
+      for (var i = 0; i < cards.length - 1; i++) {
+        var cur = current[i] || 0;
+        var diff = target[i] - cur;
+        if (Math.abs(diff) > EPSILON) {
+          cur += diff * DAMPING;
+          settled = false;
+        } else {
+          cur = target[i];
+        }
+        if (cur !== current[i]) {
+          current[i] = cur;
+          cards[i].style.setProperty('--recede', cur.toFixed(4));
         }
       }
-    }
-
-    function onScroll() {
-      if (!ticking) {
-        ticking = true;
-        requestAnimationFrame(update);
+      if (settled) {
+        running = false;
+      } else {
+        requestAnimationFrame(tick);
       }
     }
 
-    window.addEventListener('scroll', onScroll, { passive: true });
+    function wake() {
+      if (!running) {
+        running = true;
+        requestAnimationFrame(tick);
+      }
+    }
+
+    window.addEventListener('scroll', wake, { passive: true });
     window.addEventListener('resize', function () {
       measure();
-      onScroll();
+      wake();
     });
     measure();
-    update();
+    wake();
   }
 })();
