@@ -280,7 +280,7 @@ GOVERNMENT_MAIN = '''  <main id="main">
         <div class="badge-row" style="margin-bottom: var(--space-12);">
           <span class="badge">''' + SHIELD + ''' VOSB &middot; SBA VetCert</span>
           <span class="badge">''' + SHIELD + ''' Registered in SAM.gov</span>
-          <span class="badge">''' + SHIELD + ''' PA Small Business + VBE</span>
+          <span class="badge">''' + SHIELD + ''' Self-certified PA VBE</span>
         </div>
 
         <div class="card" style="margin-bottom: var(--space-10);">
