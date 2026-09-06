@@ -73,7 +73,7 @@ INDEX_MAIN = f'''  <main id="main">
               <span>Incense brand</span>
             </div>
             <div class="work-card-main">
-              <div class="work-card-logo" style="height: clamp(38px, 4.8vw, 58px);"><img src="assets/mr-sniffs-wordmark-black-transparent.png" alt="Mr. Sniff&rsquo;s" loading="lazy" decoding="async" /></div>
+              <div class="work-card-logo" style="height: clamp(45px, 5.7vw, 68px);"><img src="assets/mr-sniffs-wordmark-black-transparent.png" alt="Mr. Sniff&rsquo;s" loading="lazy" decoding="async" /></div>
               <span class="work-card-arrow">{ARROW}</span>
             </div>
           </div>
@@ -89,7 +89,7 @@ INDEX_MAIN = f'''  <main id="main">
               <span>Built &amp; sold</span>
             </div>
             <div class="work-card-main">
-              <div class="work-card-logo" style="height: clamp(38px, 4.8vw, 58px);"><img src="assets/PuddlePirateLogo-gray-trimmed.png" alt="Puddle Pirate Co." loading="lazy" decoding="async" /></div>
+              <div class="work-card-logo" style="height: clamp(45px, 5.7vw, 68px);"><img src="assets/PuddlePirateLogo-gray-trimmed.png" alt="Puddle Pirate Co." loading="lazy" decoding="async" /></div>
             </div>
           </div>
           <div class="work-card-media work-card-media--image" style="background-image: url('assets/puddle-pirate-hats.jpg');"></div>
