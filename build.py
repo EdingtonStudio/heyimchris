@@ -49,6 +49,7 @@ def head(title, description, canonical, og_title=None, og_description=None, extr
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="base.css" />
   <link rel="stylesheet" href="style.css" />
+  <script defer src="/_vercel/insights/script.js"></script>
 {extra_head}</head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
