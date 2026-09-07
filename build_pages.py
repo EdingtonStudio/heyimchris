@@ -9,9 +9,23 @@ PERSON_SCHEMA = '''  <script type="application/ld+json">
   </script>
 '''
 
+TICKER_ITEMS = [
+    "Creative + Brand Director",
+    "Founder",
+    "Coast Guard Veteran",
+    "15 Years in Brand",
+    "One Sold, Two Scaling",
+    "Pittsburgh, PA",
+]
+TICKER_COPY = "".join(f'<span class="ticker-item">{t}</span><span class="ticker-sep" aria-hidden="true">&bull;</span>' for t in TICKER_ITEMS)
+TICKER = f'''    <div class="ticker" aria-label="{" &bull; ".join(TICKER_ITEMS)}">
+      <div class="ticker-track" aria-hidden="true">{TICKER_COPY}{TICKER_COPY}</div>
+    </div>
+'''
+
 # ---------------------------------------------------------------- HOME
 INDEX_MAIN = f'''  <main id="main">
-    <section class="hero">
+{TICKER}    <section class="hero">
       <div class="wrap">
         <div class="hero-top">
           <span>Hey, I&rsquo;m Chris</span>
