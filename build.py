@@ -41,9 +41,13 @@ def head(title, description, canonical, og_title=None, og_description=None, extr
   <meta property="og:description" content="{og_description}" />
   <meta property="og:url" content="https://heyimchris.com/{canonical}" />
   <meta property="og:image" content="https://heyimchris.com/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Hey, I'm Chris in pale yellow script lettering with a smiley face on black" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#000000" />
   <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
