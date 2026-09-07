@@ -60,7 +60,7 @@ def header(active):
     return f'''  <header class="site-header">
     <div class="wrap header-inner">
       <a class="brand-mark" href="index.html" aria-label="Chris Edington, home">
-        Chris Edington
+        <picture class="brand-wordmark"><source srcset="assets/ce-wordmark-static.png" media="(prefers-reduced-motion: reduce)" /><img src="assets/ce-wordmark-loop.gif" alt="Chris Edington" /></picture>
       </a>
       <nav class="main-nav" data-main-nav aria-label="Primary">
         {render_nav(active)}
@@ -78,7 +78,7 @@ FOOTER = '''  <footer class="site-footer">
       <div class="footer-top">
         <div class="footer-brand">
           <a class="brand-mark" href="index.html" aria-label="Chris Edington, home">
-            Chris Edington
+            <picture class="brand-wordmark"><source srcset="assets/ce-wordmark-static.png" media="(prefers-reduced-motion: reduce)" /><img src="assets/ce-wordmark-loop.gif" alt="Chris Edington" /></picture>
           </a>
           <p class="text-muted" style="margin-top: var(--space-4);">Creative director and founder. Building Edington Studio, Quell, and Mr. Sniff&rsquo;s from Pittsburgh, PA.</p>
           <p class="footer-veteran">A certified veteran-owned small business<span>VOSB &middot; SBA VetCert &middot; SAM.gov registered</span></p>
