@@ -59,7 +59,7 @@ INDEX_MAIN = f'''  <main id="main">
               <span class="work-card-arrow">{ARROW}</span>
             </div>
           </div>
-          <div class="work-card-media work-card-media--image" style="background-image: url('assets/edington-studio-work.jpg');"></div>
+          <div class="work-card-media work-card-media--image" style="background-image: url('assets/edington-studio-work.jpg'); --media-ar: 2000 / 1334;"></div>
         </a>
 
         <div class="work-sentinel" aria-hidden="true"></div>
@@ -74,7 +74,7 @@ INDEX_MAIN = f'''  <main id="main">
               <span class="work-card-arrow">{ARROW}</span>
             </div>
           </div>
-          <div class="work-card-media work-card-media--image" style="background-image: url('assets/quell-product.jpg');"></div>
+          <div class="work-card-media work-card-media--image" style="background-image: url('assets/quell-product.jpg'); --media-ar: 2000 / 1333;"></div>
         </a>
 
         <div class="work-sentinel" aria-hidden="true"></div>
@@ -89,7 +89,7 @@ INDEX_MAIN = f'''  <main id="main">
               <span class="work-card-arrow">{ARROW}</span>
             </div>
           </div>
-          <div class="work-card-media work-card-media--image" style="background-image: url('assets/mr-sniffs-incense.jpg');"></div>
+          <div class="work-card-media work-card-media--image" style="background-image: url('assets/mr-sniffs-incense.jpg'); --media-ar: 768 / 1376;"></div>
         </a>
 
         <div class="work-sentinel" aria-hidden="true"></div>
@@ -103,7 +103,7 @@ INDEX_MAIN = f'''  <main id="main">
               <div class="work-card-logo" style="height: clamp(45px, 5.7vw, 68px);"><img src="assets/PuddlePirateLogo-gray-trimmed.png" alt="Puddle Pirate Co." loading="lazy" decoding="async" /></div>
             </div>
           </div>
-          <div class="work-card-media work-card-media--image" style="background-image: url('assets/puddle-pirate-hats.jpg');"></div>
+          <div class="work-card-media work-card-media--image" style="background-image: url('assets/puddle-pirate-hats.jpg'); --media-ar: 2000 / 1500;"></div>
         </div>
       </div>
     </section>

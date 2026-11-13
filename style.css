@@ -620,6 +620,28 @@ a.work-card:hover {
   max-width: 32ch;
 }
 
+/* Mobile: the fixed 108vh card height turns a landscape image into a
+   thin cover-cropped sliver, so each card shrinks to its content and
+   the media box takes the image's own aspect ratio (--media-ar, set
+   inline per card). The deck still pins and recedes exactly the same;
+   only the below-the-fold bleed is given up, since a phone has no
+   width to spare for a crop. */
+@media (max-width: 760px) {
+  .work-card {
+    height: auto;
+  }
+  .work-card-media {
+    flex: none;
+    min-height: 0;
+  }
+  .work-card-media--image {
+    aspect-ratio: var(--media-ar, 3 / 2);
+  }
+  .work-card-media--placeholder {
+    min-height: 200px;
+  }
+}
+
 /* =========================================================
    NOTE / TEASER GRID
    ========================================================= */
