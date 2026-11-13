@@ -89,7 +89,7 @@ INDEX_MAIN = f'''  <main id="main">
               <span class="work-card-arrow">{ARROW}</span>
             </div>
           </div>
-          <div class="work-card-media work-card-media--image" style="background-image: url('assets/mr-sniffs-incense.jpg'); --media-ar: 768 / 1376;"></div>
+          <div class="work-card-media work-card-media--image" style="background-image: url('assets/mr-sniffs-incense.jpg'); --media-ar: 3 / 2;"></div>
         </a>
 
         <div class="work-sentinel" aria-hidden="true"></div>
