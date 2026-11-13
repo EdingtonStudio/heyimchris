@@ -640,6 +640,15 @@ a.work-card:hover {
   .work-card-media--placeholder {
     min-height: 200px;
   }
+  /* The hold between cards is also the visible flow gap below a
+     pinned card. Desktop hides it behind 108vh-tall cards; the short
+     mobile cards expose it, so the hold tightens to a seam. */
+  .work-card + .work-sentinel {
+    margin-top: 12vh;
+  }
+  .work-stack::after {
+    height: 10vh;
+  }
 }
 
 /* =========================================================
